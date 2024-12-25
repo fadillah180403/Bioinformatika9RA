@@ -50,7 +50,7 @@ Dalam penelitian, klustering data terkait C-MET penting untuk mengidentifikasi p
 ---
 
 ## Alur Penelitian
-![Alur Penelitian Menggunakan K-Prototype Clustering](https://your-image-link-here)
+![Alur Penelitian Menggunakan K-Prototype Clustering](https://github.com/fadillah180403/Bioinformatika9RA/blob/main/Flowchart.png)
 
 ---
 
