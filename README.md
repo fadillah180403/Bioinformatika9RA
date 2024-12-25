@@ -1,7 +1,11 @@
 # Klustering C-MET Menggunakan Algoritma K-Prototype
 
 ## Kelompok 9 RA
-### Muhammad Fathir Fadillah, Raditia Riandi, Salwa Amelia Salsabila, Frisca Sihotang, Lulu Christin Sihombing
+### 1. Muhammad Fathir Fadillah 
+### 2. Raditia Riandi 
+### 3. Salwa Amelia Salsabila 
+### 4. Frisca Sihotang 
+### 5. Lulu Christin Sihombing
 
 ---
 
