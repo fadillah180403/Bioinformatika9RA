@@ -1,0 +1,216 @@
+```{r}
+library(readxl)
+library(openxlsx)
+library(mlr3verse)
+library(clustMixType)
+library(naivebayes)
+#library(rcdklibs)
+library(dplyr)
+#library(rcdk)
+library(BiocManager)
+```
+#Misal buat visualisasi molekul (bingung)
+```{r}
+#BiocManager::install("ChemmineR")
+#BiocManager::install("ChemmineOB")
+library(ChemmineR)
+```
+
+#Baca Data
+```{r}
+data <- read.xlsx("C:/Users/mafad/Downloads/cmet9 (1).xlsx")
+head(data)
+```
+#Boxplot eksplorasi dan uji normalitas
+```{r}
+par(mfrow = c(1, 1))
+for (i in 2052:2056) {
+  boxplot(data[[i]] ~ data[[2051]],
+          main = paste("Boxplot untuk", colnames(data)[i]),
+          xlab = colnames(data)[2051],
+          ylab = colnames(data)[i],
+          col = c("lightblue", "lightgreen", "lightpink"))
+}
+```
+#Statistika deskriptif data
+```{r}
+summary(data.frame(data[,c(2052,2053,2054,2055,2056)]))
+```
+
+#Kproto untuk pemodelan
+```{r}
+data[,2051] <- as.factor(data[,2051])#status
+```
+
+```{r}
+data_perlu <- data[,-c(1,2050)]#tidak pakai smiles berganda dan kolom id
+head(data_perlu[,2055])#lihat 6 data teratas kolom smiles
+data_perlu[, 1:2049] <- lapply(data_perlu[, 1:2049], as.factor)#jadikan fingerprint dan status sebagai faktor
+```
+
+```{r}
+kprotonew3 <- kproto(data_perlu[,1:2054],k=3,iter.max =3 )#cuma sampai 2054 saja, karena ke 2055 itu smilesnya
+```
+```{r}
+kprotonew2 <- kproto(data_perlu[,1:2054],k=2,iter.max =3 )
+```
+```{r}
+kprotonew4 <- kproto(data_perlu[,1:2054],k=4,iter.max =3 )
+```
+
+```{r}
+kprotonew5 <- kproto(data_perlu[,1:2054],k=5,iter.max =3 )
+```
+
+
+
+```{r}
+meanwithinss<-c(kprotonew2$tot.withinss/nrow(kprotonew2$centers),
+kprotonew3$tot.withinss/nrow(kprotonew3$centers),
+kprotonew4$tot.withinss/nrow(kprotonew4$centers),
+kprotonew5$tot.withinss/nrow(kprotonew5$centers))
+```
+
+```{r}
+
+plot(x=c(2,3,4,5),y=meanwithinss,type="l",pch=11,lwd=3,main="Plot Penurunan MeanWthinss",xlab="K",ylab="MeanwithinSS")
+```
+```{r}
+kprotonew3
+```
+
+Terjadi penurunan sebanyak 3 kali. Penurunan paling landai adalah penurunan pertama, yaitu saat k=2 menuju k=3. Hal ini mengakibatkan sudut yang terbentuk saat k=3 lebih lancip dari pada yang lain. Oleh karena itu, dipilih nilai k=3 karena sudut yang dihasilkannya paling dekat dengan 90 derajat (siku2).
+#Buat kumpulan molekul2 smiles tersebut
+```{r}
+molekul2smiles <- data[,1]
+```
+#Buat sampel
+```{r}
+set.seed(121450098)
+```
+#Ambil Sampel untuk kluster 1, 2, dan 3
+```{r}
+#Kluster 1
+dataklus1=c()
+for (i in 1:sum(kprotonew3$size)) {
+  if(kprotonew3$cluster[[i]] == 1){
+    dataklus1 <- append(dataklus1,i)
+  }
+}
+#kluster ke 2
+dataklus2=c()
+for (i in 1:sum(kprotonew3$size)) {
+  if(kprotonew3$cluster[[i]] == 2){
+    dataklus2 <- append(dataklus2,i)
+  }
+}
+#kluster ke-3
+dataklus3=c()
+for (i in 1:sum(kprotonew3$size)) {
+  if(kprotonew3$cluster[[i]] == 3){
+    dataklus3 <- append(dataklus3,i)
+  }
+}
+```
+#Sampel data kluster 1, 2, dan 3
+```{r}
+set.seed(121450098)
+sampelklus1 <- c(sample(dataklus1[data[dataklus1,2051]=="active"],1),
+                  sample(dataklus1[data[dataklus1,2051]=="inactive"],1),
+                  sample(dataklus1[data[dataklus1,2051]=="intermediate"],1)
+                )
+sampelklus2 <- c(sample(dataklus2[data[dataklus2,2051]=="active"],1),
+                  sample(dataklus2[data[dataklus2,2051]=="inactive"],1),
+                  sample(dataklus2[data[dataklus2,2051]=="intermediate"],1)
+                )
+sampelklus3 <- c(sample(dataklus3[data[dataklus3,2051]=="active"],1),
+                  sample(dataklus3[data[dataklus3,2051]=="inactive"],1),
+                  sample(dataklus3[data[dataklus3,2051]=="intermediate"],1)
+                )
+sampelkluster <- data.frame(sampelklus1,sampelklus2,sampelklus3)
+sampelkluster
+```
+```{r}
+paste("Rasio Active kluster 3",(length(dataklus3[data[dataklus3,2051]=="active"])/length(dataklus3)))
+paste("Rasio Inactive kluster 3",(length(dataklus3[data[dataklus3,2051]=="inactive"])/length(dataklus3)))
+paste("Rasio Intermediate kluster 3",(length(dataklus3[data[dataklus3,2051]=="intermediate"])/length(dataklus3)))
+
+paste("Rasio Active kluster 2",(length(dataklus2[data[dataklus2,2051]=="active"])/length(dataklus2)))
+paste("Rasio Inactive kluster 2",(length(dataklus2[data[dataklus2,2051]=="inactive"])/length(dataklus2)))
+paste("Rasio Intermediate kluster 2",(length(dataklus2[data[dataklus2,2051]=="intermediate"])/length(dataklus2)))
+
+paste("Rasio Active kluster 1",(length(dataklus1[data[dataklus1,2051]=="active"])/length(dataklus1)))
+paste("Rasio Inactive kluster 1",(length(dataklus1[data[dataklus1,2051]=="inactive"])/length(dataklus1)))
+paste("Rasio Intermediate kluster 1",(length(dataklus1[data[dataklus1,2051]=="intermediate"])/length(dataklus1)))
+```
+```{r}
+paste("Rasio Active kluster 3 Atas Keseleuruhan Data",(length(dataklus3[data[dataklus3,2051]=="active"])/length(data[data[,2051]=="active",2051])))
+paste("Rasio Inactive kluster 3 Atas Keseleuruhan Data",(length(dataklus3[data[dataklus3,2051]=="inactive"])/length(data[data[,2051]=="inactive",2051])))
+paste("Rasio Intermediate kluster 3 Atas Keseleuruhan Data",(length(dataklus3[data[dataklus3,2051]=="intermediate"])/length(data[data[,2051]=="intermediate",2051])))
+
+paste("Rasio Active kluster 2 Atas Keseleuruhan Data",(length(dataklus2[data[dataklus2,2051]=="active"])/length(data[data[,2051]=="active",2051])))
+paste("Rasio Inactive kluster 2 Atas Keseleuruhan Data",(length(dataklus2[data[dataklus2,2051]=="inactive"])/length(data[data[,2051]=="inactive",2051])))
+paste("Rasio Intermediate kluster 2 Atas Keseleuruhan Data",(length(dataklus2[data[dataklus2,2051]=="intermediate"])/length(data[data[,2051]=="intermediate",2051])))
+
+paste("Rasio Active kluster 1 Atas Keseleuruhan Data",(length(dataklus1[data[dataklus1,2051]=="active"])/length(data[data[,2051]=="active",2051])))
+paste("Rasio Inactive kluster 1 Atas Keseleuruhan Data",(length(dataklus1[data[dataklus1,2051]=="inactive"])/length(data[data[,2051]=="inactive",2051])))
+paste("Rasio Intermediate kluster 1 Atas Keseleuruhan Data",(length(dataklus1[data[dataklus1,2051]=="intermediate"])/length(data[data[,2051]=="intermediate",2051])))
+length(data[data[,2051]=="inactive",2051])
+```
+#Visualisasikan molekulnya
+```{r}
+for (i in 1:3) {
+  print("Ini Visualisasi Molekul Yang Termasuk dalam Kluster ke-")
+  print(i)
+  plot(smiles2sdf(data[sampelkluster[,i],1]))
+  print(data[sampelkluster[,i],2051])
+  print(data[sampelkluster[,i],41:70])
+  smiles_list <- data[sampelkluster[, i], 1]
+}
+#plot(smiles2sdf(data[sampelkluster[1,2],1]))
+#BiocManager::install("fmcsR")
+library(fmcsR)
+```
+#Formula dan Jenis Cincin 
+```{r}
+for (k in 1:3) {
+  cat("\n", strrep("=", 20), "\n")
+  cat("Ini adalah Cincin dan Rumus Molekul Kluster ke-", k, "\n")
+  cat(strrep("=", 20), "\n")
+  for (i in 1:3) {
+    cat("Molekul ke-", i, ":\n")
+    cincin <- rings(smiles2sdf(data[sampelkluster[i, k], 1]), arom = TRUE)$AROMATIC
+    rumus<-propOB(smiles2sdf(data[sampelkluster[i,k],1])) 
+    print(rumus$formula)
+    print(cincin)
+    cat(strrep("-", 20), "\n")
+  }
+}
+```
+#Interferensi Statistik molekul per kluster
+```{r}
+#1
+??fmcsr
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
