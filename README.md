@@ -58,3 +58,6 @@ Dalam penelitian, klustering data terkait C-MET penting untuk mengidentifikasi p
 Penelitian tentang C-MET dengan algoritma K-Prototype memberikan pendekatan yang kuat untuk mengelompokkan data ekspresi gen atau mutasi yang terkait dengan MET proto-oncogene. Dengan kemampuan untuk menangani atribut campuran, algoritma ini membantu mengidentifikasi pola data yang relevan, yang dapat mendukung pengembangan terapi berbasis molekuler dan pemahaman mendalam tentang mekanisme kanker.
 
 ---
+##Lebih Lengkap Silakan Kunjungi
+https://drive.google.com/drive/folders/1EITRoyXf-OL-a_qIm9pFcbHOwzpOS1GY?usp=sharing
+---
