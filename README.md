@@ -11,16 +11,20 @@
 
 ## Pendahuluan
 
-Klustering merupakan metode dalam analisis data yang bertujuan untuk mengelompokkan objek-objek ke dalam kelompok (cluster) berdasarkan karakteristik yang dimilikinya. Dalam hal ini, **C-MET** adalah salah satu pendekatan yang digunakan untuk mengelompokkan data yang memiliki atribut campuran, yaitu data numerik dan kategorikal. Algoritma yang digunakan adalah **K-Prototype**, yang merupakan pengembangan dari algoritma K-Means untuk menangani data campuran tersebut.
+C-MET atau MET proto-oncogene adalah gen yang mengkode protein reseptor tirosin kinase yang dikenal sebagai hepatocyte growth factor receptor (HGFR). Protein ini berperan penting dalam berbagai proses biologis, seperti proliferasi sel, motilitas sel, dan angiogenesis, serta memiliki implikasi besar dalam perkembangan kanker. Penelitian terkait C-MET bertujuan untuk memahami peranannya dalam kanker dan mengelompokkan ekspresi gen atau mutasi yang terkait dengan C-MET.
+
+Dalam konteks ini, **algoritma K-Prototype** dapat digunakan untuk klustering data ekspresi gen atau mutasi C-MET, yang sering kali memiliki atribut campuran, yaitu data numerik (seperti tingkat ekspresi) dan kategorikal (seperti status mutasi).
 
 ---
 
 ## Apa itu C-MET?
-C-MET adalah singkatan dari **Clustering Mixed-Etype Data**. Metode ini dirancang untuk:
-- Mengelompokkan data yang memiliki kombinasi atribut numerik dan kategorikal.
-- Mempermudah analisis data yang kompleks, seperti data demografi, survei, atau data pasar.
+C-MET adalah singkatan dari **MET proto-oncogene**, gen yang berperan sebagai reseptor tirosin kinase. Reseptor ini diaktifkan oleh hepatocyte growth factor (HGF), yang memicu berbagai jalur sinyal intraseluler untuk:
+- Mendukung proliferasi dan migrasi sel.
+- Meningkatkan angiogenesis.
+- Membantu penyembuhan luka.
+- Berperan dalam proses metastasis pada kanker.
 
-Dalam penerapannya, algoritma K-Prototype sangat relevan untuk C-MET karena memiliki kemampuan untuk menangani dua jenis atribut tersebut dengan bobot yang fleksibel.
+Dalam penelitian, klustering data terkait C-MET penting untuk mengidentifikasi pola dalam ekspresi gen atau variasi mutasi yang dapat membantu memahami mekanisme penyakit dan pengembangan terapi.
 
 ---
 
@@ -34,7 +38,7 @@ Dalam penerapannya, algoritma K-Prototype sangat relevan untuk C-MET karena memi
    - Dapat bekerja dengan data berskala besar dengan atribut campuran.
 
 3. **Aplikasi Luas:**
-   - Cocok untuk berbagai kasus analisis data seperti segmentasi pasar, data kesehatan, dan lain-lain.
+   - Cocok untuk analisis data seperti ekspresi gen, mutasi gen, atau data biologis lainnya.
 
 ### Tahapan Algoritma K-Prototype:
 1. Inisialisasi centroid awal untuk cluster.
@@ -46,10 +50,11 @@ Dalam penerapannya, algoritma K-Prototype sangat relevan untuk C-MET karena memi
 ---
 
 ## Alur Penelitian
-![Alur Penelitian Menggunakan K-Prototype Clustering](https://github.com/fadillah180403/Bioinformatika9RA/blob/main/Flowchart.png)
+![Alur Penelitian Menggunakan K-Prototype Clustering](https://your-image-link-here)
 
 ---
 
 ## Kesimpulan
-Metode klustering dengan algoritma K-Prototype sangat berguna untuk menangani data campuran, seperti yang terdapat dalam metode C-MET. Dengan kemampuan untuk menyesuaikan bobot atribut, algoritma ini memberikan hasil yang lebih akurat dan relevan dalam pengelompokan data.
+Penelitian tentang C-MET dengan algoritma K-Prototype memberikan pendekatan yang kuat untuk mengelompokkan data ekspresi gen atau mutasi yang terkait dengan MET proto-oncogene. Dengan kemampuan untuk menangani atribut campuran, algoritma ini membantu mengidentifikasi pola data yang relevan, yang dapat mendukung pengembangan terapi berbasis molekuler dan pemahaman mendalam tentang mekanisme kanker.
+
 ---
