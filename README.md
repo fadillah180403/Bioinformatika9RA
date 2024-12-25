@@ -1,7 +1,7 @@
 # Klustering C-MET Menggunakan Algoritma K-Prototype
 
 ## Kelompok 9 RA
-### 1. Muhammad Fathir Fadillah 
+### 1. Muhammad Fathir Fadillah 121450098
 ### 2. Raditia Riandi 
 ### 3. Salwa Amelia Salsabila 
 ### 4. Frisca Sihotang 
@@ -59,5 +59,9 @@ Penelitian tentang C-MET dengan algoritma K-Prototype memberikan pendekatan yang
 
 ---
 ##Lebih Lengkap Silakan Kunjungi
+1. File "KlusteringC-MET.Rmd" tidak dapat dilihat langsung outputnya.
+2. Saat menjalankan file "KlusteringC-MET.Rmd" harus melakukan instalasi library ChemminerR dan ChemmineOB melaui BiocManager (#BiocManager::install("ChemmineR") dan
+#BiocManager::install("ChemmineOB")).
+3. Untuk output file "KlusteringC-MET.Rmd" dapat dilihat melalui tautan berikut.
 https://drive.google.com/drive/folders/1EITRoyXf-OL-a_qIm9pFcbHOwzpOS1GY?usp=sharing
 ---
