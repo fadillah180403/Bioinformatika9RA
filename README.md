@@ -58,7 +58,7 @@ Dalam penelitian, klustering data terkait C-MET penting untuk mengidentifikasi p
 Penelitian tentang C-MET dengan algoritma K-Prototype memberikan pendekatan yang kuat untuk mengelompokkan data ekspresi gen atau mutasi yang terkait dengan MET proto-oncogene. Dengan kemampuan untuk menangani atribut campuran, algoritma ini membantu mengidentifikasi pola data yang relevan, yang dapat mendukung pengembangan terapi berbasis molekuler dan pemahaman mendalam tentang mekanisme kanker.
 
 ---
-##Lebih Lengkap Silakan Kunjungi
+## Lebih Lengkap Silakan Kunjungi
 1. File "KlusteringC-MET.Rmd" tidak dapat dilihat langsung outputnya.
 2. Saat menjalankan file "KlusteringC-MET.Rmd" harus melakukan instalasi library ChemminerR dan ChemmineOB melaui BiocManager (#BiocManager::install("ChemmineR") dan
 #BiocManager::install("ChemmineOB")).
