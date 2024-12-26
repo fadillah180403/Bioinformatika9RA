@@ -67,4 +67,5 @@ Penelitian tentang C-MET dengan algoritma K-Prototype memberikan pendekatan yang
 https://drive.google.com/drive/folders/1EITRoyXf-OL-a_qIm9pFcbHOwzpOS1GY?usp=sharing
 5. Berikut kami lampirkan tautan video YouTube
 https://youtu.be/2vJpYevNmQ0
+6. Berikut Kami lampirkan Posternya https://github.com/fadillah180403/Bioinformatika9RA/blob/main/Poster%20Kelompok%209.png
 ---
