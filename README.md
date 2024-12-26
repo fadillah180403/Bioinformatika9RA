@@ -62,6 +62,7 @@ Penelitian tentang C-MET dengan algoritma K-Prototype memberikan pendekatan yang
 1. File "KlusteringC-MET.Rmd" tidak dapat dilihat langsung outputnya.
 2. Saat menjalankan file "KlusteringC-MET.Rmd" harus melakukan instalasi library ChemminerR dan ChemmineOB melaui BiocManager (#BiocManager::install("ChemmineR") dan
 #BiocManager::install("ChemmineOB")).
-3. Untuk output file "KlusteringC-MET.Rmd" dapat dilihat melalui tautan berikut.
+3. Di sini kami menggunakan perintah "sample()" oleh karena itu, sampel tiap kluster bisa saja berbeda untuk setiap kali run. Digunakan "set.seed()" untuk mencegahnya.
+4. Untuk output file "KlusteringC-MET.Rmd" dapat dilihat melalui tautan berikut.
 https://drive.google.com/drive/folders/1EITRoyXf-OL-a_qIm9pFcbHOwzpOS1GY?usp=sharing
 ---
