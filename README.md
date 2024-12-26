@@ -65,4 +65,6 @@ Penelitian tentang C-MET dengan algoritma K-Prototype memberikan pendekatan yang
 3. Di sini kami menggunakan perintah "sample()" oleh karena itu, sampel tiap kluster bisa saja berbeda untuk setiap kali run. Digunakan "set.seed()" untuk mencegahnya.
 4. Untuk output file "KlusteringC-MET.Rmd" dapat dilihat melalui tautan berikut.
 https://drive.google.com/drive/folders/1EITRoyXf-OL-a_qIm9pFcbHOwzpOS1GY?usp=sharing
+5. Berikut kami lampirkan tautan video YouTube
+https://youtu.be/2vJpYevNmQ0
 ---
